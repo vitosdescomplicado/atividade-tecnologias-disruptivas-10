@@ -9,14 +9,13 @@ import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Modal from "@mui/material/Modal";
-
 import CriarTarefa from "./CriarTarefa";
 import EditarTarefa from "./EditarTarefa";
+import { CardActions } from "@mui/material";
 
 //A função abaixo é usada para criar o array contendo os dados iniciais da listagem de tarefas.
 function createData(
@@ -106,7 +105,7 @@ const ListarTarefa = () => {
   const [idTarefaSelecionada, setIdTarefaSelecionada] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const handleOpenEditar = () => setOpenEditar(true);
+  const handleOpenEditar = () => setOpenEditar(true);
   const handleCloseEditar = () => setOpenEditar(false);
 
   //O array definido acima é setado como conteúdo do state Tarefas na renderização inicial do componente.
@@ -139,49 +138,109 @@ const ListarTarefa = () => {
 
   return (
     <>
-      <Card>
-        <CardHeader title="Tarefas" subheader="Listagem de Tarefas" />
+      <Card
+        sx={{
+          backgroundColor: "#1a1a1a",
+          color: "#fff",
+          borderRadius: "12px",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          border: "2px solid transparent",
+          backgroundImage:
+            "linear-gradient(#1a1a1a, #1a1a1a), linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0)",
+          backgroundOrigin: "border-box",
+          backgroundClip: "padding-box, border-box",
+          padding: 12,
+        }}
+      >
+        <CardHeader
+          title="Tarefas"
+          subheader="Listagem de Tarefas"
+          sx={{
+            borderBottom: "1px solid #333",
+            backgroundImage:
+              "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: "bold",
+          }}
+        />
         <CardContent>
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 650 }}
-              size="small"
-              aria-label="a dense table"
-            >
+          <TableContainer
+            component={Paper}
+            sx={{
+              backgroundColor: "#333",
+              borderRadius: "8px",
+              boxShadow: "0 4px 10px rgba(255, 140, 0, 0.5)",
+            }}
+          >
+            <Table sx={{ minWidth: 650 }} size="small">
               <TableHead>
-                <TableRow>
-                  <TableCell>#</TableCell>
-                  <TableCell>Título</TableCell>
-                  <TableCell align="right">Descrição</TableCell>
-                  <TableCell align="right">Data de Início</TableCell>
-                  <TableCell align="right">Data de Finalização</TableCell>
-                  <TableCell align="right">Status</TableCell>
-                  <TableCell align="right">Recurso</TableCell>
-                  <TableCell align="left"></TableCell>
-                  <TableCell align="left"></TableCell>
+                <TableRow sx={{ backgroundColor: "#444" }}>
+                  <TableCell sx={{ color: "#fff" }}>#</TableCell>
+                  <TableCell sx={{ color: "#fff" }}>Título</TableCell>
+                  <TableCell sx={{ color: "#fff" }} align="right">
+                    Descrição
+                  </TableCell>
+                  <TableCell sx={{ color: "#fff" }} align="right">
+                    Data de Início
+                  </TableCell>
+                  <TableCell sx={{ color: "#fff" }} align="right">
+                    Data de Finalização
+                  </TableCell>
+                  <TableCell sx={{ color: "#fff" }} align="right">
+                    Status
+                  </TableCell>
+                  <TableCell sx={{ color: "#fff" }} align="right">
+                    Recurso
+                  </TableCell>
+                  <TableCell />
+                  <TableCell />
                 </TableRow>
               </TableHead>
               <TableBody>
                 {tarefas.map((row, indice) => (
                   <TableRow
                     key={indice}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    sx={{
+                      "&:nth-of-type(odd)": { backgroundColor: "#2b2b2b" },
+                    }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      sx={{ color: "#fff" }}
+                      component="th"
+                      scope="row"
+                    >
                       {row.idTarefa}
                     </TableCell>
-                    <TableCell component="th" scope="row">
+                    <TableCell sx={{ color: "#fff" }}>
                       {row.tituloTarefa}
                     </TableCell>
-                    <TableCell align="right">{row.descricaoTarefa}</TableCell>
-                    <TableCell align="right">{row.inicioTarefa}</TableCell>
-                    <TableCell align="right">{row.fimTarefa}</TableCell>
-                    <TableCell align="right">{row.statusTarefa}</TableCell>
-                    <TableCell align="right">{row.recursoTarefa}</TableCell>
+                    <TableCell sx={{ color: "#fff" }} align="right">
+                      {row.descricaoTarefa}
+                    </TableCell>
+                    <TableCell sx={{ color: "#fff" }} align="right">
+                      {row.inicioTarefa}
+                    </TableCell>
+                    <TableCell sx={{ color: "#fff" }} align="right">
+                      {row.fimTarefa}
+                    </TableCell>
+                    <TableCell sx={{ color: "#fff" }} align="right">
+                      {row.statusTarefa}
+                    </TableCell>
+                    <TableCell sx={{ color: "#fff" }} align="right">
+                      {row.recursoTarefa}
+                    </TableCell>
                     <TableCell align="center">
                       <Button
                         variant="contained"
-                        color="success"
+                        sx={{
+                          background:
+                            "linear-gradient(90deg, #ff0080, #ff8c00)",
+                          color: "#fff",
+                          boxShadow: "0 4px 10px rgba(255, 140, 0, 0.7)",
+                          minWidth: 0,
+                          padding: "6px",
+                        }}
                         onClick={() => handleEditar(row.idTarefa)}
                       >
                         <EditIcon fontSize="small" />
@@ -190,7 +249,14 @@ const ListarTarefa = () => {
                     <TableCell align="center">
                       <Button
                         variant="contained"
-                        color="error"
+                        sx={{
+                          background:
+                            "linear-gradient(90deg, #ff0080, #ff8c00)",
+                          color: "#fff",
+                          boxShadow: "0 4px 10px rgba(255, 140, 0, 0.7)",
+                          minWidth: 0,
+                          padding: "6px",
+                        }}
                         onClick={() => handleDeletar(row.idTarefa)}
                       >
                         <DeleteIcon fontSize="small" />
@@ -203,48 +269,53 @@ const ListarTarefa = () => {
           </TableContainer>
         </CardContent>
         <CardActions>
-          <Button size="small" variant="contained" onClick={handleOpen}>
+          <Button
+            size="small"
+            variant="contained"
+            sx={{
+              background: "linear-gradient(90deg, #40e0d0, #ff8c00, #ff0080)",
+              color: "#fff",
+              boxShadow: "0 4px 10px rgba(64, 224, 208, 0.7)",
+            }}
+            onClick={handleOpen}
+          >
             Criar Tarefa
           </Button>
-          <Button size="small" variant="outlined">
+          <Button
+            size="small"
+            variant="outlined"
+            sx={{
+              color: "#fff",
+              borderColor: "#ff8c00",
+              "&:hover": {
+                borderColor: "#ff0080",
+              },
+            }}
+          >
             Cancelar
           </Button>
         </CardActions>
       </Card>
-      <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <div>
-            <CriarTarefa
-              handleClose={handleClose}
-              tarefas={tarefas}
-              setTarefas={setTarefas}
-            />
-          </div>
-        </Modal>
-      </div>
-      <div>
-        <Modal
-          open={openEditar}
-          onClose={handleCloseEditar}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <div>
-            <EditarTarefa
-              handleCloseEditar={handleCloseEditar}
-              idTarefaSelecionada={idTarefaSelecionada}
-              tarefas={tarefas}
-              tarefa={tarefa}
-              setTarefas={setTarefas}
-            />
-          </div>
-        </Modal>
-      </div>
+      <Modal open={open} onClose={handleClose}>
+        <div>
+          <CriarTarefa
+            handleClose={handleClose}
+            tarefas={tarefas}
+            setTarefas={setTarefas}
+          />
+        </div>
+      </Modal>
+      <Modal open={openEditar} onClose={handleCloseEditar}>
+        <div>
+          <EditarTarefa
+            handleCloseEditar={handleCloseEditar}
+            idTarefaSelecionada={idTarefaSelecionada}
+            tarefas={tarefas}
+            tarefa={tarefa}
+            setTarefas={setTarefas}
+          />
+        </div>
+      </Modal>
     </>
   );
 };

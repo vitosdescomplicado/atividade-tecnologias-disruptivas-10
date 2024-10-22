@@ -28,7 +28,7 @@ const EditarTarefa = ({
   //Abaixo setamos os valores dos states (que popularão o formulário mais abaixo) com os valores do state Tarefa,
   //  recebido como props do componente ListarTarefa.
   useEffect(() => {
-    //console.log('Tarefa selecionada: ' + JSON.stringify(tarefa));
+    console.log("Tarefa selecionada: " + JSON.stringify(tarefa));
     setIdTarefa(idTarefaSelecionada);
     setTituloTarefa(tarefa.tituloTarefa);
     setDescricaoTarefa(tarefa.descricaoTarefa);
