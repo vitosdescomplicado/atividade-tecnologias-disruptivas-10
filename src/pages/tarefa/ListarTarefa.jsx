@@ -105,7 +105,7 @@ const ListarTarefa = () => {
   const [idTarefaSelecionada, setIdTarefaSelecionada] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleOpenEditar = () => setOpenEditar(true);
+  // const handleOpenEditar = () => setOpenEditar(true);
   const handleCloseEditar = () => setOpenEditar(false);
 
   //O array definido acima é setado como conteúdo do state Tarefas na renderização inicial do componente.

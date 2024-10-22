@@ -51,7 +51,7 @@ const CriarTarefa = ({ handleClose, tarefas, setTarefas }) => {
         statusTarefa,
       },
     ]);
-    //console.log(`Tarefas: ` + JSON.stringify(tarefas));
+    console.log(`Tarefas: ` + JSON.stringify(tarefas));
     handleClose();
   };
 

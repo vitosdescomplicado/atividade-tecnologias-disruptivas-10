@@ -47,8 +47,10 @@ const EditarTarefa = ({
   };
 
   const handleEditar = () => {
-    //console.log(`id: ${idTarefa} \n titulo: ${tituloTarefa} \n descrição: ${descricaoTarefa} \n inicio: ${inicioTarefa} \n fim: ${fimTarefa} \n recurso: ${recursoTarefa} \n status: ${statusTarefa}`);
-    //console.log('idTarefaSelecionada: ' + idTarefaSelecionada);
+    console.log(
+      `id: ${idTarefa} \n titulo: ${tituloTarefa} \n descrição: ${descricaoTarefa} \n inicio: ${inicioTarefa} \n fim: ${fimTarefa} \n recurso: ${recursoTarefa} \n status: ${statusTarefa}`
+    );
+    console.log("idTarefaSelecionada: " + idTarefaSelecionada);
     setTarefas((current) =>
       current.map((obj) => {
         if (obj.idTarefa === idTarefaSelecionada) {
@@ -69,21 +71,51 @@ const EditarTarefa = ({
       })
     );
 
-    //console.log(`Tarefas Editadas: ` + JSON.stringify(tarefas));
+    console.log(`Tarefas Editadas: ` + JSON.stringify(tarefas));
     handleCloseEditar();
   };
 
   return (
-    <Grid container spacing={2}>
-      <Card sx={style}>
-        <CardHeader title="Tarefas" subheader="Edição de Tarefas" />
+    <Grid
+      container
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        marginTop: 12,
+      }}
+    >
+      <Card
+        sx={{
+          backgroundColor: "#1a1a1a",
+          color: "#fff",
+          borderRadius: "12px",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          border: "2px solid transparent",
+          backgroundImage:
+            "linear-gradient(#1a1a1a, #1a1a1a), linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0)",
+          backgroundOrigin: "border-box",
+          backgroundClip: "padding-box, border-box",
+        }}
+      >
+        <CardHeader
+          title="Tarefas"
+          subheader="Edição de Tarefas"
+          sx={{
+            borderBottom: "1px solid #333",
+            backgroundImage:
+              "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: "bold",
+          }}
+        />
         <CardContent
           sx={{
             width: "95%",
             maxWidth: "100%",
           }}
         >
-          <Grid item xs={12}>
+          <Grid item>
             <FormControl fullWidth>
               <Input
                 id="tarefa_titulo"
@@ -92,13 +124,23 @@ const EditarTarefa = ({
                 onChange={(e) => {
                   setTituloTarefa(e.target.value);
                 }}
+                sx={{
+                  color: "#fff",
+                  borderColor: "#ff8c00",
+                  "&:hover": {
+                    borderColor: "#ff0080",
+                  },
+                }}
               />
-              <FormHelperText id="tarefa_titulo_helper_text">
+              <FormHelperText
+                id="tarefa_titulo_helper_text"
+                sx={{ color: "#ff8c00" }}
+              >
                 Título da Tarefa.
               </FormHelperText>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item>
             <FormControl fullWidth>
               <Input
                 id="tarefa_descricao"
@@ -107,14 +149,24 @@ const EditarTarefa = ({
                 onChange={(e) => {
                   setDescricaoTarefa(e.target.value);
                 }}
+                sx={{
+                  color: "#fff",
+                  borderColor: "#ff8c00",
+                  "&:hover": {
+                    borderColor: "#ff0080",
+                  },
+                }}
               />
-              <FormHelperText id="tarefa_descricao_helper_text">
+              <FormHelperText
+                id="tarefa_descricao_helper_text"
+                sx={{ color: "#ff8c00" }}
+              >
                 Descrição da Tarefa.
               </FormHelperText>
             </FormControl>
           </Grid>
           <Grid container spacing={2} mt={1}>
-            <Grid item xs={3}>
+            <Grid item>
               <FormControl>
                 <Input
                   id="tarefa_inicio"
@@ -125,17 +177,23 @@ const EditarTarefa = ({
                     setInicioTarefa(e.target.value);
                   }}
                   sx={{
-                    color: "rgba(0, 0, 0, 0.6)",
-                    fontWeight: 400,
+                    color: "#fff",
                     paddingLeft: "13px",
+                    borderColor: "#ff8c00",
+                    "&:hover": {
+                      borderColor: "#ff0080",
+                    },
                   }}
                 />
-                <FormHelperText id="tarefa_inicio_helper_text">
+                <FormHelperText
+                  id="tarefa_inicio_helper_text"
+                  sx={{ color: "#ff8c00" }}
+                >
                   Início da Tarefa.
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item>
               <FormControl>
                 <Input
                   id="tarefa_fim"
@@ -146,19 +204,27 @@ const EditarTarefa = ({
                     setFimTarefa(e.target.value);
                   }}
                   sx={{
-                    color: "rgba(0, 0, 0, 0.6)",
-                    fontWeight: 400,
+                    color: "#fff",
                     paddingLeft: "13px",
+                    borderColor: "#ff8c00",
+                    "&:hover": {
+                      borderColor: "#ff0080",
+                    },
                   }}
                 />
-                <FormHelperText id="tarefa_fim_helper_text">
+                <FormHelperText
+                  id="tarefa_fim_helper_text"
+                  sx={{ color: "#ff8c00" }}
+                >
                   Fim da Tarefa.
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item>
               <FormControl fullWidth>
-                <InputLabel htmlFor="tarefa_recurso">Recurso</InputLabel>
+                <InputLabel htmlFor="tarefa_recurso" sx={{ color: "#ff8c00" }}>
+                  Recurso
+                </InputLabel>
                 <Select
                   id="tarefa_recurso"
                   value={recursoTarefa}
@@ -166,8 +232,11 @@ const EditarTarefa = ({
                   onChange={handleRecurso}
                   size="small"
                   sx={{
-                    color: "rgba(0, 0, 0, 0.6)",
-                    fontWeight: 400,
+                    color: "#fff",
+                    borderColor: "#ff8c00",
+                    "&:hover": {
+                      borderColor: "#ff0080",
+                    },
                   }}
                 >
                   <MenuItem value={"Recurso 1"}>Recurso 1</MenuItem>
@@ -176,9 +245,11 @@ const EditarTarefa = ({
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item>
               <FormControl fullWidth>
-                <InputLabel htmlFor="tarefa_recurso">Status</InputLabel>
+                <InputLabel htmlFor="tarefa_recurso" sx={{ color: "#ff8c00" }}>
+                  Status
+                </InputLabel>
                 <Select
                   id="tarefa_status"
                   value={statusTarefa}
@@ -186,8 +257,11 @@ const EditarTarefa = ({
                   onChange={handleStatus}
                   size="small"
                   sx={{
-                    color: "rgba(0, 0, 0, 0.6)",
-                    fontWeight: 400,
+                    color: "#fff",
+                    borderColor: "#ff8c00",
+                    "&:hover": {
+                      borderColor: "#ff0080",
+                    },
                   }}
                 >
                   <MenuItem value={"Aguardando"}>Aguardando</MenuItem>
@@ -197,15 +271,32 @@ const EditarTarefa = ({
               </FormControl>
             </Grid>
             <Grid container spacing={2} pl={2} mt={2}>
-              <Grid item xs={1}>
-                <Button size="small" variant="contained" onClick={handleEditar}>
+              <Grid item>
+                <Button
+                  size="small"
+                  variant="contained"
+                  sx={{
+                    background:
+                      "linear-gradient(90deg, #40e0d0, #ff8c00, #ff0080)",
+                    color: "#fff",
+                    boxShadow: "0 4px 10px rgba(64, 224, 208, 0.7)",
+                  }}
+                  onClick={handleEditar}
+                >
                   Salvar
                 </Button>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item>
                 <Button
                   size="small"
                   variant="outlined"
+                  sx={{
+                    color: "#fff",
+                    borderColor: "#ff8c00",
+                    "&:hover": {
+                      borderColor: "#ff0080",
+                    },
+                  }}
                   onClick={handleCloseEditar}
                 >
                   Cancelar
@@ -217,16 +308,6 @@ const EditarTarefa = ({
       </Card>
     </Grid>
   );
-};
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "60%",
-  bgcolor: "background.paper",
-  p: 4,
 };
 
 export default EditarTarefa;
